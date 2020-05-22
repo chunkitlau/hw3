@@ -50,18 +50,17 @@ def imshow(img):
 
 if __name__ == '__main__':
 
-    #cwd = '/home/aistudio/data/data35121/hw3'
+    cwd = '/home/aistudio/data/data35121/hw3'
     #cwd = '/kaggle/input/hw3cnn'
-    cwd = os.getcwd() + '/hw3'
+    #cwd = os.getcwd() + '/hw3'
     num_classes = 11
     num_epoch = 30
     img_size = 256
     img_size_in = 224
-    batch_size = 128
+    batch_size = 64
     #num_workers = 0
-    num_workers = 0
 
-    transform_train = transforms.Compose([transforms.Resize(img_size), 
+    transform_train = transforms.Compose([transforms.Resize([img_size, img_size]), 
                                           transforms.RandomResizedCrop(img_size_in), 
                                           transforms.RandomHorizontalFlip(), 
                                           transforms.RandomRotation(15), 
@@ -69,7 +68,7 @@ if __name__ == '__main__':
                                           transforms.Normalize(mean=[0.485, 0.456, 0.406], 
                                             std=[0.229, 0.224, 0.225])])
 
-    transform_test = transforms.Compose([transforms.Resize(img_size), 
+    transform_test = transforms.Compose([transforms.Resize([img_size_in, img_size_in]), 
                                           transforms.ToTensor(), 
                                           transforms.Normalize(mean=[0.485, 0.456, 0.406], 
                                             std=[0.229, 0.224, 0.225])])
@@ -93,7 +92,7 @@ if __name__ == '__main__':
 
     #model = models.vgg16_bn(pretrained=True)
     model = models.vgg16_bn()
-    model.load_state_dict(torch.load(os.path.join(os.getcwd(), 'vgg16_bn-6c64b313.pth')))
+    model.load_state_dict(torch.load('/home/aistudio/data/data35121/vgg16_bn.pth'))
     model.classifier[6] = nn.Linear(4096, num_classes)
     criterion = nn.CrossEntropyLoss()
     #optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)

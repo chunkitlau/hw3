@@ -3,6 +3,16 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+hw3/
+hw3.zip
+vgg16_bn.pth
+cifar_net2.pth
+cifar_net.pth
+cifar_net2.pth
+resnet50.pth
+
+
+
 # User-specific files
 *.rsuser
 *.suo
